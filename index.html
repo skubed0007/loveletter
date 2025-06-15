@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>To My Love 💛</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
@@ -34,24 +34,24 @@
       padding: 2em 3em;
       text-align: center;
       z-index: 2;
-      white-space: pre-wrap;
     }
 
     .letter-line {
       font-size: 2.6em;
       line-height: 3em;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.15), 0 0 20px rgba(255,255,160,0.2);
       opacity: 1;
       transition: opacity 0.8s ease;
-      display: inline-block;
-      hyphens: auto;
-      word-break: break-word;
+      display: block;
+      white-space: normal;
+      overflow-wrap: break-word;
     }
 
     .letter-char {
       display: inline-block;
       opacity: 0;
       transition: all 0.5s ease;
+      animation: shimmer 2.5s infinite ease-in-out;
     }
 
     .letter-char.visible {
@@ -60,6 +60,12 @@
 
     .glitch {
       animation: glitch 0.4s steps(1, end) forwards;
+    }
+
+    @keyframes shimmer {
+      0% { text-shadow: 0 0 2px #fff4b3, 0 0 8px #fffdc1; }
+      50% { text-shadow: 0 0 8px #fffda1, 0 0 12px #f0f8a9; }
+      100% { text-shadow: 0 0 2px #fff4b3, 0 0 8px #fffdc1; }
     }
 
     @keyframes glitch {
@@ -80,10 +86,10 @@
 </head>
 <body>
   <canvas id="fireflies"></canvas>
-  <p style="text-align: center; font-size: 1em; color: #4444c8c2;">CLICK/TAP ANYWHERE FOR NEXT LINE</p>
   <div class="letter-container" id="letter"></div>
 
   <script>
+    // === Fireflies Background ===
     const canvas = document.getElementById('fireflies');
     const ctx = canvas.getContext('2d');
     let w = canvas.width = window.innerWidth;
@@ -122,83 +128,225 @@
     }
     animateFireflies();
 
-    const lines = [
-      "Hey my forever love,",
-      "You're the sunrise my soul stretches for every morning.",
-      "You're the starlight I whisper dreams to every night.",
-      "Your voice is my favorite melody,",
-      "and your laugh, the sweetest song the universe composed just for me.",
-      "Your smile could calm storms in my heart,",
-      "and your eyes… they hold galaxies that I want to get lost in forever.",
-      "You're not just beautiful. You're my most beautiful reason to exist.",
-      "Even the fireflies pause to admire your light when you enter the room.",
-      "You're my safe place, my warmth, my everything.",
-      "Just one hug from you makes my entire world right again.",
-      "When I say I love you, I mean it with every breath,",
-      "with every heartbeat that rushes at the thought of you.",
-      "You’re the only person who can make my soul blush.",
-      "And I’ll spend forever making you feel the way you make me feel: cherished, adored, treasured.",
-      "For every firefly that glows tonight,",
-      "know that my love for you glows a thousand times brighter.",
-      "Yours eternally,",
-      "Joy 💛"
-    ];
+    // === Love Lines ===
+const lines = [
+  "I must be dreaming, because loving you feels unreal.",
+  "Your smile? Illegal. Arrest me with a kiss.",
+  "Every time you blink, a star falls in love with you.",
+  "You walked into my life like a wish that got impatient.",
+  "Warning: Hugging you may cause time to stop.",
+  "You're not just my type, you're my only type.",
+  "I tried writing about you, but my pen blushed.",
+  "You don’t need to light a candle—your glow’s enough.",
+  "Even fireflies dim themselves when you pass by.",
+  "You make my heart skip like a love song on repeat.",
+  "Cupid’s jealous he didn’t hit me first.",
+  "If kisses were wishes, I'd be out of breath.",
+  "You're not just pretty—you’re dangerously enchanting.",
+  "My favorite place? Between your arms and your smile.",
+  "You + Me = Glitched reality with heavenly visuals.",
+  "You’re like Wi-Fi—everything feels empty without you.",
+  "I’d write your name in the stars, but they’d blush.",
+  "Even my shadow misses you when you're not here.",
+  "Loving you isn’t a feeling. It’s my full-time job.",
+  "You make silence sound romantic.",
+  "I fall for you more with every heartbeat.",
+  "Even sunsets envy your glow.",
+  "I caught myself smiling—then I remembered you exist.",
+  "Your laugh is my favorite playlist.",
+  "You walked in, and my lonely walked out.",
+  "If hearts had languages, mine would only speak yours.",
+  "Every second without you feels like a love note unfinished.",
+  "When I miss you, even my dreams feel empty.",
+  "You’re not just on my mind—you’re written all over it.",
+  "You're the calm in my chaos and the chaos I crave.",
+  "Loving you is like breathing—impossible to stop.",
+  "Your eyes told stories my heart had been waiting for.",
+  "You turned my ‘maybe’ into a forever yes.",
+  "Even time slows down to watch you smile.",
+  "My heart wrote poetry the day I met you.",
+  "You are every chapter my soul longed to read.",
+  "One look from you, and my walls collapsed happily.",
+  "Even my thoughts sound sweeter when they're about you.",
+  "You’re the 'once upon a time' I never want to end.",
+  "If love were a song, you'd be my favorite verse.",
+  "You're the moonlight that makes my darkness glow.",
+  "Even silence feels like music when you’re near.",
+  "You’re not just love—you’re the whole definition.",
+  "I didn’t know my heart could blush until you smiled.",
+  "You make every love story before you feel like practice.",
+  "You're the spark every star is jealous of.",
+  "My soul wrapped itself in yours like it always knew.",
+  "Your voice could hush storms inside me.",
+  "You’re the wish I didn’t know I made—but got anyway.",
+  "Every ‘I love you’ feels brand new with you.",
+  "I didn’t fall for you—I soared.",
+  "You turned my loneliness into poetry.",
+  "You're the punctuation in my unfinished sentences.",
+  "Even the moon sighs when it sees you smile.",
+  "When you're near, even time forgets to tick.",
+  "I want to memorize the map of your heartbeat.",
+  "You're not a part of my world—you *are* my world.",
+  "Every blink away from you is a blink too long.",
+  "You're the answer to the love I never questioned.",
+  "Being yours feels like finally coming home.",
+  "You're the scent in the air my soul follows.",
+  "My dreams start and end with your name.",
+  "You're the page my life was waiting to write.",
+  "Even the stars pause when you smile.",
+  "I want to grow old wrapped in your laugh.",
+  "I didn’t just find love—I found you.",
+  "If love could be seen, you'd outshine the sun.",
+  "You're the calm in every storm I face.",
+  "You give my heart a reason to race.",
+  "I’d relive every lifetime just to meet you again.",
+  "You're not a choice, you’re my destiny.",
+  "You lit a fire in me that warms galaxies.",
+  "You are my favorite hello and hardest goodbye.",
+  "Even roses feel shy beside your beauty.",
+  "You're the yes in all my what-ifs.",
+  "Your name fits perfectly next to 'mine forever'.",
+  "Every part of me writes poetry for you.",
+  "My soul only sings your name.",
+  "Even my heartbeat tries to sound like your laugh.",
+  "You're the love letter my heart sent to the universe.",
+  "You’re the sparkle in my every sigh.",
+  "You make even my fears feel safe.",
+  "You make reality better than every dream.",
+  "You’re the warmth that lingers in every memory.",
+  "You color my black-and-white days in gold.",
+  "You're the kind of love that makes fairytales jealous.",
+  "Even eternity feels short when I’m with you.",
+  "You’re the hush in my chaos, the hum in my peace.",
+  "You gave purpose to every tear I once cried.",
+  "You make the sky look dull when you smile.",
+  "My world begins and ends in your arms.",
+  "You’re the echo my heart never gets tired of hearing.",
+  "You're my first thought and my last prayer.",
+  "Even time would trade places to stand still beside you.",
+  "You stitched sunlight into my soul.",
+  "If hearts had fingerprints, mine would spell your name.",
+  "You make the air feel like love songs.",
+  "You’re not my chapter—you’re the whole story.",
+  "Even the wind pauses to listen when you speak.",
+  "Every path I took led to you.",
+  "I crave the spaces where your soul feels safe.",
+  "You filled the silence my heart was drowning in.",
+  "Even forever feels too short for us.",
+  "You’re the light in every wish I ever made.",
+  "My love for you spills past the edges of time.",
+  "You’re not just mine—you’re *me* in another shape.",
+  "I breathe better when your name is near.",
+  "You’re the glow that makes night feel like day.",
+  "Even my dreams blush when they feature you.",
+  "If love were a place, you’d be my home.",
+  "You're the rhythm in my heartbeat’s dance.",
+  "You make reality sweeter than fantasy.",
+  "Your love feels like a lullaby for my soul.",
+  "You turned my ordinary into poetry.",
+  "Even my flaws feel lovable in your eyes.",
+  "You’re the spark behind every smile I wear.",
+  "You're my muse, my melody, my miracle.",
+  "Even the stars gossip about your glow.",
+  "You’re the reason my shadow never feels alone.",
+  "I don't believe in magic—I believe in *you*.",
+  "You're the cozy corner in a chaotic world.",
+  "Your love carved art into my broken pieces.",
+  "You replaced my fears with fireflies.",
+  "You’re the sunbeam behind every smile I fake.",
+  "My soul found its twin the day we met.",
+  "You make this world feel like heaven’s preview.",
+  "You're the peace in my most restless thoughts.",
+  "Even my silence hums your name now.",
+  "Your gaze turns my world into warm poetry.",
+  "You're not love at first sight—you're love *every* sight.",
+  "You're my favorite line in every book I read.",
+  "You’ve become the shape of my happiness.",
+  "I never knew forever had a face until you.",
+  "You’re not just my person—you’re my purpose.",
+  "Even fate looks proud it brought you to me.",
+  "You're the sigh after every perfect moment.",
+  "Even my heartbeat has memorized your rhythm.",
+  "You're the echo that sweetens my solitude.",
+  "You're the soft place my thoughts fall asleep to.",
+  "You complete my sentences and my silences.",
+  "You're not just written in my heart—you’re engraved.",
+  "You made me fall, and taught me how to float.",
+  "You're not just in my dreams—you’re the reason I dream.",
+  "Your love tastes like every good memory I never had.",
+  "You're the fire I’d gladly burn in forever.",
+  "You made love my favorite thing to believe in.",
+  "Even gravity can't pull me down from loving you.",
+  "You're not an addiction—you’re the cure I never want to quit.",
+  "You kissed my wounds and named them beautiful.",
+  "You found me in places I had lost myself.",
+  "You’re the first page of every poem I write.",
+  "My future spells your name in stardust.",
+  "You melted my fears with your smile.",
+  "You're the cozy in my coldest nights.",
+  "You pulled poetry from the cracks in my heart.",
+  "You’re the forever I always dreamed of.",
+  "Even my heartbeat whispers ‘stay’ when you leave.",
+  "You're not just my person—you’re my peace.",
+  "Loving you made me love life again.",
+  "You're the gentle chaos I never want to escape.",
+  "Even silence feels romantic with you in it.",
+  "You gave color to my soul's grayscale.",
+  "You're my secret favorite chapter of existence.",
+  "My love for you has no punctuation—it just goes on.",
+  "You gave my broken pieces a reason to shine.",
+  "You're not the end of my story—you're the best part.",
+  "I didn't know what I needed until I saw you smile.",
+  "You make the stars jealous of your spark.",
+  "You're my rhythm, my rhyme, my reason.",
+  "Even time pauses to stare when you walk by.",
+  "You turned my heart into a love letter.",
+  "You're the ink my soul writes with.",
+  "You replaced my silence with symphonies.",
+  "You're the missing piece I stopped searching for.",
+  "Even when you're gone, your love lingers like perfume.",
+  "You're the most beautiful 'what if' that became 'absolutely'."
+];
+
 
     const container = document.getElementById('letter');
-    let index = 0;
-    let prev = "";
+    const index = Math.floor(Math.random() * lines.length);
 
-    async function glitchToLine(oldLine, newLine) {
-      return new Promise(resolve => {
-        const div = document.createElement('div');
-        div.className = 'letter-line';
-        container.innerHTML = '';
-        container.appendChild(div);
+    function showLineWithGlitch(newLine) {
+      const div = document.createElement('div');
+      div.className = 'letter-line';
+      container.innerHTML = '';
+      container.appendChild(div);
 
-        const maxLength = Math.max(oldLine.length, newLine.length);
+      // Wrap each character
+      for (let i = 0; i < newLine.length; i++) {
+        const span = document.createElement('span');
+        span.className = 'letter-char';
+        span.textContent = newLine[i] === ' ' ? '\u00A0' : newLine[i];
+        div.appendChild(span);
+      }
 
-        for (let i = 0; i < maxLength; i++) {
-          const span = document.createElement('span');
-          span.className = 'letter-char';
-          const char = newLine[i] === ' ' ? '\u00A0' : (newLine[i] || '');
-          span.textContent = char;
-          div.appendChild(span);
-        }
+      const spans = div.querySelectorAll('span');
+      const interval = setInterval(() => {
+        spans.forEach(span => {
+          if (!span.classList.contains('visible')) {
+            span.textContent = String.fromCharCode(33 + Math.random() * 94);
+            span.classList.add('glitch');
+          }
+        });
+      }, 50);
 
-        let spans = div.querySelectorAll('span');
-        let interval = setInterval(() => {
-          let allDone = true;
-          spans.forEach((span, i) => {
-            if (!span.classList.contains('visible')) {
-              allDone = false;
-              span.textContent = String.fromCharCode(33 + Math.random() * 94);
-              span.classList.add('glitch');
-            }
-          });
-        }, 50);
-
-        setTimeout(() => {
-          clearInterval(interval);
-          spans.forEach((span, i) => {
-            span.textContent = newLine[i] === ' ' ? '\u00A0' : (newLine[i] || '');
-            span.classList.remove('glitch');
-            span.classList.add('visible');
-          });
-          resolve();
-        }, 1800);
-      });
+      setTimeout(() => {
+        clearInterval(interval);
+        spans.forEach((span, i) => {
+          span.textContent = newLine[i] === ' ' ? '\u00A0' : newLine[i];
+          span.classList.remove('glitch');
+          span.classList.add('visible');
+        });
+      }, 1800);
     }
 
-    async function startLetter() {
-      if (index >= lines.length) index = 0;
-      await glitchToLine(prev, lines[index]);
-      prev = lines[index];
-      index++;
-    }
-
-    startLetter();
-
-    document.body.addEventListener('click', startLetter);
+    showLineWithGlitch(lines[index]);
   </script>
 </body>
 </html>
